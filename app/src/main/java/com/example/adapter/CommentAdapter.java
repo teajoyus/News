@@ -35,6 +35,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/5/26 0026.
  */
+
 public class CommentAdapter extends BaseAdapter {
     private Context context;
     private List<CommentItem> list;
