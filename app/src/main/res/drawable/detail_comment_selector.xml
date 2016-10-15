@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="false">
+        <shape>
+            <!-- 描边 -->
+            <stroke
+                android:width="1dp"
+                android:color="#20000000" />
+            <corners
+                android:radius="10dp"
+                ></corners>
+    <solid
+        android:color="#ffffff"
+        ></solid>
+        </shape>
+    </item>
+<!--
+    <item android:state_focused="true"
+        android:drawable="@drawable/bg_alibuybutton_selected" />
+    -->
+    <item android:state_focused="true" >
+        <shape>
+            <!-- 描边 -->
+            <stroke
+                android:width="1dp"
+                android:color="#A0EE7621" />
+
+            <corners
+                android:radius="10dp"
+                ></corners>
+
+        <solid
+            android:color="#ffffff"
+            ></solid>
+        </shape>
+
+    </item>
+</selector>  

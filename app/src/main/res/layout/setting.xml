@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0faeaeae"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_title_love"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/themecolor">
+
+        <TextView
+            android:id="@+id/tv_title_hot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:text="我的设置"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_unlook_setting"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/rl_title_love"
+        android:background="#ffffff"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:gravity="center"
+            android:text="允许他人浏览我的喜欢"
+            android:textColor="#c0000000"
+            android:textSize="18sp" />
+
+        <com.example.myview.UISwitchButton
+            android:id="@+id/sb_unlook_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="#09000000"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            ></View>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_night_setting"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/rl_unlook_setting"
+        android:background="#ffffff"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:gravity="center"
+            android:text="夜间模式"
+            android:textColor="#c0000000"
+            android:textSize="18sp" />
+
+        <com.example.myview.UISwitchButton
+            android:id="@+id/sb_night_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="#09000000"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            ></View>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_word_setting"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/rl_night_setting"
+        android:background="#ffffff"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:gravity="center"
+            android:text="大字体模式"
+            android:textColor="#c0000000"
+            android:textSize="18sp" />
+
+        <com.example.myview.UISwitchButton
+            android:id="@+id/sb_word_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="#09000000"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            ></View>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_push_setting"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/rl_word_setting"
+        android:background="#ffffff"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:gravity="center"
+            android:text="推送新闻"
+            android:textColor="#c0000000"
+            android:textSize="18sp" />
+
+        <com.example.myview.UISwitchButton
+            android:id="@+id/sb_push_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="#09000000"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            ></View>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_clean_setting"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/rl_push_setting"
+        android:background="#ffffff"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:gravity="center"
+            android:text="清除缓存"
+            android:textColor="#c0000000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_clean_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="25dp"
+            android:gravity="center"
+            android:textColor="#a0ff0000"
+            android:text="8.5MB"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="#09000000"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            ></View>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_version_setting"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/rl_clean_setting"
+        android:background="#ffffff"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:gravity="center"
+            android:text="当前版本"
+            android:textColor="#c0000000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_version_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="25dp"
+            android:gravity="center"
+            android:textColor="#a0000000"
+            android:text=""
+
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="#09000000"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            ></View>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_api_setting"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/rl_version_setting"
+        android:background="#ffffff"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:gravity="center"
+            android:text="接口更换"
+            android:textColor="#c0000000"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/jiantou"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_centerVertical="true"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="#09000000"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            ></View>
+    </RelativeLayout>
+    <Button
+        android:id="@+id/bt_logout_setting"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#80ff0000"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        android:text="注销"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        />
+
+</RelativeLayout>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/rl_title_love"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/themecolor"
+        >
+
+        <ImageView
+            android:id="@+id/iv_back_detail"
+            android:layout_width="40dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="1dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/back"
+            android:visibility="gone"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:text="喜欢列表"
+            android:gravity="center"
+            />
+
+    </RelativeLayout>
+    <com.example.myview.XListView
+        android:id="@+id/lv_love"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_title_love"
+        android:divider="#00000000"
+        />
+</RelativeLayout>

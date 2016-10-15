@@ -1,0 +1,44 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+ >
+    <RelativeLayout
+        android:id="@+id/rl_title_love"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/themecolor"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:text="热点评论"
+            android:gravity="center"
+            android:id="@+id/tv_title_hot" />
+
+    </RelativeLayout>
+    <com.example.myview.XListView
+        android:id="@+id/lv_hot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_title_love"
+        android:layout_marginTop="5dp"
+        ></com.example.myview.XListView>
+    <ImageView
+        android:id="@+id/iv_sort_hot"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="20dp"
+        android:paddingBottom="10dip"
+        android:src="@drawable/sort_hot" />
+
+</RelativeLayout>

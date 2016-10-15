@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    >
+<com.example.myview.CircleImageView
+    android:id="@+id/iv_avatar_quan_item"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:src="@drawable/avatar"
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="10dp"
+    />
+    <TextView
+        android:id="@+id/tv_name_quan_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#e0000000"
+        android:text="用户157****6597"
+        android:textSize="15sp"
+        android:layout_toRightOf="@+id/iv_avatar_quan_item"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        />
+    <TextView
+        android:id="@+id/tv_time_quan_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#80000000"
+        android:text="6月12号 12:30:30"
+        android:textSize="12sp"
+        android:layout_below="@+id/tv_name_quan_item"
+        android:layout_toRightOf="@+id/iv_avatar_quan_item"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="15dp"
+        />
+    <TextView
+        android:id="@+id/tv_content_quan_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容"
+        android:layout_below="@+id/iv_avatar_quan_item"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="10dp"
+        android:textColor="#c0000000"
+        />
+    <RelativeLayout
+        android:id="@+id/rl_bottom_quan_item"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/tv_content_quan_item"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="10dp"
+        >
+
+        <TextView
+            android:id="@+id/tv_read_quan_item"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:drawableLeft="@drawable/read_quan_item"
+            android:text=" 浏览 12"
+            android:textColor="#90000000"
+            android:textSize="12sp"
+            android:gravity="center"
+            />
+        <TextView
+            android:id="@+id/tv_zan_quan_item"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/tv_read_quan_item"
+            android:layout_marginLeft="20dp"
+            android:drawableLeft="@drawable/zan_quan_item"
+            android:text=" 点赞 12"
+            android:textSize="12sp"
+            android:textColor="#90000000"
+            android:gravity="center"
+            />
+        <TextView
+            android:id="@+id/tv_comment_quan_item"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@+id/tv_tiji_quan_item"
+            android:drawableLeft="@drawable/comment_quan_item"
+            android:text=" 评论"
+            android:textColor="#eb4f38"
+            android:gravity="center"
+            />
+        <TextView
+            android:id="@+id/tv_tiji_quan_item"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="提及到新闻 "
+            android:textColor="#80ff0000"
+            android:layout_alignParentRight="true"
+            android:drawableRight="@drawable/top_quan_item"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_quan_item"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/rl_bottom_quan_item"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        >
+        <!--android:background="@drawable/new__layout_shape"-->
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            >
+            <TextView
+                android:id="@+id/tv_title_quan_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="习近平考察黑龙江:闯出老工业基地振兴新路"
+                android:textSize="18sp"
+                android:textColor="#c0000000"
+                />
+            <TextView
+                android:id="@+id/tv_abstrated_quan_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_title_quan_item"
+                android:layout_marginTop="10dp"
+                android:textSize="14sp"
+                android:lines="2"
+                android:ellipsize="end"
+                android:text="习近平考察黑龙江:闯出老工业基地振兴新路"
+                android:textColor="#70000000"
+                />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/iv_picture_quan_item"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/shili"
+            android:scaleType="center"
+            />
+    </LinearLayout>
+</RelativeLayout>

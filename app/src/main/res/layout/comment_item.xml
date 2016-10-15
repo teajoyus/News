@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingRight="10dp"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp"
+    >
+
+
+    <ImageView
+        android:id="@+id/iv_add_one_comment"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:gravity="center"
+        android:src="@drawable/love_unselected"
+        android:layout_alignTop="@+id/view"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toLeftOf="@+id/tv_zan_number_comment"
+        android:layout_toStartOf="@+id/tv_zan_number_comment" />
+    <TextView
+        android:id="@+id/tv_zan_number_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="20"
+        android:gravity="center"
+        android:textSize="15dp"
+        android:textColor="#c0000000"
+        android:layout_marginRight="20dp"
+        android:layout_alignTop="@+id/iv_add_one_comment"
+        android:layout_alignRight="@+id/tv_content_comment"
+        android:layout_alignEnd="@+id/tv_content_comment" />
+
+    <TextView
+        android:id="@+id/tv_add_one_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+1"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:visibility="gone"
+        android:textSize="18dip"
+        android:textColor="#000000"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="35dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <com.example.myview.CircleImageView
+        android:id="@+id/iv_picture_comment"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/avatar"
+        />
+    <TextView
+        android:id="@+id/tv_name_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/iv_picture_comment"
+        android:layout_marginLeft="10dp"
+        android:textSize="15sp"
+        android:textColor="#B0000000"
+        android:text="用户15767****97"
+        />
+    <TextView
+        android:id="@+id/tv_time_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="#50000000"
+        android:text="5月28日 12:30:53"
+        android:layout_alignBottom="@+id/iv_add_one_comment"
+        android:layout_alignLeft="@+id/tv_name_comment"
+        android:layout_alignStart="@+id/tv_name_comment" />
+    <TextView
+        android:id="@+id/tv_content_comment"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#e0000000"
+        android:textSize="15sp"
+        android:text="这新闻太好了太好了，这个是评论啊这新闻太好了太好了，这个是评论啊"
+        android:layout_below="@+id/tv_name_comment"
+        android:layout_toRightOf="@+id/iv_picture_comment"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        />
+    <View
+        android:layout_below="@+id/tv_content_comment"
+        android:layout_width="fill_parent"
+        android:background="#00000000"
+        android:layout_height="8dp"
+        android:id="@+id/view"></View>
+</RelativeLayout>

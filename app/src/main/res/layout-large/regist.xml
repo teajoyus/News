@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@color/themecolor">
+    <RelativeLayout
+        android:id="@+id/rl_logo_regist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        >
+    <TextView
+        android:id="@+id/title_regist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="互联网新闻推荐系统"
+        android:textColor="#ffffff"
+        android:textSize="42sp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignBottom="@+id/iv_logo_regist"
+        android:layout_toRightOf="@+id/iv_logo_regist"
+        android:layout_toEndOf="@+id/iv_logo_regist" />
+
+        <ImageView
+            android:id="@+id/iv_logo_regist"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:src="@drawable/news_logo"
+            android:layout_marginTop="30dp"
+
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_regist"
+        android:layout_width="fill_parent"
+        android:layout_height="300dp"
+        android:layout_below="@+id/rl_logo_regist"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="150dp"
+        android:background="#ffffff">
+
+        <LinearLayout
+            android:id="@+id/ll_regist"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            >
+        <EditText
+            android:id="@+id/et_phone_regist"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="8"
+            android:background="@drawable/login_et_selector"
+            android:inputType="phone"
+            android:hint=" 请输入手机号码" />
+            <View
+                android:layout_width="5dp"
+                android:layout_height="wrap_content"
+                />
+            <Button
+                android:id="@+id/bt_code_regist"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:text="获取验证码"
+                android:textColor="#A0EE7621"
+                android:background="@drawable/registcode_btn_selector"
+                />
+
+
+        </LinearLayout>
+        <EditText
+            android:id="@+id/et_pwd_regist"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/ll_regist"
+            android:layout_weight="8"
+            android:background="@drawable/login_et_selector"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:layout_marginTop="15sp"
+            android:inputType="textPassword"
+            android:hint=" 请设置密码" />
+        <EditText
+            android:id="@+id/et_pwd2_regist"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/et_pwd_regist"
+            android:layout_weight="8"
+            android:background="@drawable/login_et_selector"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:layout_marginTop="15sp"
+            android:inputType="textPassword"
+            android:hint=" 请确认密码" />
+        <Button
+            android:id="@+id/bt_regist"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/et_pwd2_regist"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/login_btn_selector"
+            android:text="注册"
+            android:textColor="#ffffff"
+            android:textSize="22sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

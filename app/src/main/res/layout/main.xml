@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+   >
+
+<RelativeLayout
+    android:id="@+id/rl_title_main"
+    android:layout_width="fill_parent"
+    android:layout_height="50dp"
+    android:background="@color/themecolor"
+    android:focusableInTouchMode="true"
+    >
+    <EditText
+        android:id="@+id/et_search_main"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/label_more_main"
+        android:background="@drawable/search_et_selector"
+        android:layout_marginLeft="10dp"
+        android:hint="搜索新闻标题、内容"
+        android:paddingLeft="15dp"
+        android:gravity="center|left"
+        android:textColor="#c0000000"
+        android:textSize="15sp"
+        android:imeOptions="actionSearch"
+android:singleLine="true"
+        >
+
+
+    </EditText>
+
+    <ImageView
+        android:id="@+id/label_more_main"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:scaleType="fitXY"
+        android:layout_centerVertical="true"
+        android:src="@drawable/more_add"
+
+        />
+</RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_column_main"
+        android:layout_below="@+id/rl_title_main"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+
+        >
+
+        <HorizontalScrollView
+            android:id="@+id/hs__main"
+            android:layout_width="match_parent"
+            android:layout_height="40.0dip"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:id="@+id/ll__main"
+                android:layout_width="fill_parent"
+                android:layout_height="40.0dip"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="10.0dip"
+                android:paddingRight="10.0dip" />
+        </HorizontalScrollView>
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/category_line"
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dip"
+        android:background="#ffdddddd" />
+
+    <com.example.myview.XListView
+        android:id="@+id/lv_main"
+        android:layout_below="@+id/rl_column_main"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        ></com.example.myview.XListView>
+</RelativeLayout>

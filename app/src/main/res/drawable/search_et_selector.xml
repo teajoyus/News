@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="false">
+        <shape>
+
+    <corners
+        android:radius="7dp"
+        ></corners>
+<solid
+    android:color="#b0FFFFFF"
+    ></solid>
+        </shape>
+
+    </item>
+<!--
+    <item android:state_focused="true"
+        android:drawable="@drawable/bg_alibuybutton_selected" />
+    -->
+    <item android:state_focused="true" >
+        <shape>
+            <stroke
+                android:color="#60000000"
+                android:width="1dp"
+                ></stroke>
+            <corners
+                android:radius="7dp"
+                ></corners>
+            <solid
+                android:color="#b0FFFFFF"
+                ></solid>
+        </shape>
+
+    </item>
+</selector>  

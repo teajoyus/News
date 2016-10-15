@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/nicheng"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:text="昵称     " 
+        android:textColor="#808080"
+        android:textSize="18.0sp"
+        />
+
+	<TextView
+	    android:id="@+id/user_center_name"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBaseline="@+id/nicheng"
+	    android:layout_alignBottom="@+id/nicheng"
+	    android:layout_toRightOf="@+id/nicheng"
+	    android:layout_marginLeft="10dp"
+	    android:text="暂无昵称"
+	    android:textSize="18.0sp" />
+	<TextView
+	    android:id="@+id/user_center_changename"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBaseline="@+id/nicheng"
+	    android:layout_alignBottom="@+id/nicheng"
+	 android:layout_alignParentRight="true"
+	    android:layout_marginRight="10dp"
+	    android:text="修改"
+	    android:textColor="#D0118ec0"
+	    android:textSize="16.0sp" />
+	<View 
+	    android:id="@+id/user_liner"
+	    android:layout_width="fill_parent"
+	    android:layout_height="1dip" 
+	    android:layout_below="@+id/nicheng"
+	    android:background="#EAEAEE"
+	    />
+
+	<TextView
+	    android:id="@+id/phone"
+	    android:layout_width="80dp"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_below="@+id/user_liner"
+	    android:layout_marginTop="15dp"
+	    android:layout_marginLeft="15dp"
+	    android:layout_marginBottom="15dp"
+	    android:text="认证手机  " 
+        android:textColor="#808080"
+        android:textSize="18.0sp"/>
+<TextView
+	    android:id="@+id/user_center_phone"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBaseline="@+id/phone"
+	    android:layout_alignBottom="@+id/phone"
+	    android:layout_toRightOf="@+id/phone"
+	    android:layout_marginLeft="10dp"
+	    android:text="15767976597"
+	    android:textSize="18.0sp" />
+<View 
+	    android:id="@+id/user_liner2"
+	    android:layout_width="fill_parent"
+	    android:layout_height="1dip" 
+	    android:layout_below="@+id/phone"
+	    android:background="#EAEAEE"
+	    />
+
+	
+<View 
+	    android:id="@+id/user_liner3"
+	    android:layout_width="fill_parent"
+	    android:layout_height="1dip" 
+	    android:background="#EAEAEE"
+	    />
+<Button 
+    	android:id="@+id/user_share"
+       android:layout_width="fill_parent"
+	    android:layout_height="40dp"
+	    android:layout_below="@+id/user_center_phone"
+	    android:layout_marginLeft="10dp"
+	    android:layout_marginRight="10dp"
+	    android:layout_marginTop="50dp"
+	    android:text="分享给好友"
+	    android:textColor="#FFFFFF"
+	    android:gravity="center"
+	    android:background="#ffffff"
+    />
+<Button 
+    	android:id="@+id/user_exit"
+       android:layout_width="fill_parent"
+	    android:layout_height="40dp"
+	    android:layout_below="@+id/user_share"
+	    android:layout_marginLeft="10dp"
+	    android:layout_marginRight="10dp"
+	    android:layout_marginTop="5dp"
+	    android:text="退出帐号"
+	    android:textColor="#FFFFFF"
+	    android:gravity="center"
+	    android:background="#ffffff"
+	    
+    />
+</RelativeLayout>

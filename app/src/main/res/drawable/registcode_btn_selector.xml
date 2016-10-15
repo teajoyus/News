@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="false">
+        <shape>
+
+            <stroke
+                android:width="2dp"
+                android:color="#20000000" />
+
+        </shape>
+
+    </item>
+<!--
+    <item android:state_focused="true"
+        android:drawable="@drawable/bg_alibuybutton_selected" />
+    -->
+    <item android:state_pressed="true" >
+        <shape>
+            <stroke
+                android:width="2dp"
+                android:color="#60000000" />
+
+        </shape>
+
+    </item>
+</selector>  
