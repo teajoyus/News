@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.entry.NewItem;
 import com.example.news.R;
+import com.example.util.BitmapUtils;
 import com.example.util.NewsUtils;
 import com.example.util.TableUtils;
 import com.nostra13.universalimageloader.cache.disc.impl.BaseDiskCache;
@@ -42,10 +43,13 @@ public class NewsAdapter extends BaseAdapter {
     private DisplayImageOptions options;
     private boolean isSearch;
     private String keyword;
+    private boolean scrollState;
+
     public NewsAdapter(Context context, List<NewItem> list) {
-        isSearch=false;
+        isSearch = false;
         this.context = context;
         this.list = list;
+        scrollState = false;
         // 使用DisplayImageOptions.Builder()创建DisplayImageOptions
         options = new DisplayImageOptions.Builder()
                 .showStubImage(R.drawable.new_logo2)          // 设置图片下载期间显示的图片
@@ -54,18 +58,32 @@ public class NewsAdapter extends BaseAdapter {
                 .cacheInMemory(true)                        // 设置下载的图片是否缓存在内存中
                 .cacheOnDisc(true)                          // 设置下载的图片是否缓存在SD卡中
                 .cacheOnDisk(true)
-                .displayer(new RoundedBitmapDisplayer(20))  // 设置成圆角图片
+                // .displayer(new RoundedBitmapDisplayer(20))  // 设置成圆角图片
+
                 .build();
     }
-public void setSearch(boolean isSearch){
-    this.isSearch = isSearch;
-}
-    public  void setKeyWord(String keyWord){
+
+    public void setSearch(boolean isSearch) {
+        this.isSearch = isSearch;
+    }
+
+    public void setKeyWord(String keyWord) {
         this.keyword = keyWord;
     }
-    public void cleanKeyWord(){
-        isSearch=false;
-        keyword=null;
+
+    public void cleanKeyWord() {
+        isSearch = false;
+        keyword = null;
+    }
+
+    /**
+     * 获取listview的滚动状态
+     *
+     * @param scrollState
+     */
+    public void setScrollState(boolean scrollState) {
+        this.scrollState = scrollState;
+        Log.i("setScrollState", "scrollState:" + scrollState);
     }
 
     public boolean isSearch() {
@@ -92,7 +110,7 @@ public void setSearch(boolean isSearch){
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         ViewHolder holder = null;
 
@@ -116,6 +134,34 @@ public void setSearch(boolean isSearch){
             holder = (ViewHolder) convertView.getTag();
 
         }
+        /******************文字显示******************/
+        {
+
+            holder.abstrated.setText("    " + list.get(position).getAbstracted());
+            holder.read.setText("阅读 ");
+            holder.read.append(NewsUtils.textColorSpaned("#EE7621", list.get(position).getRead()));
+            holder.love.setText("喜欢 ");
+            holder.love.append(NewsUtils.textColorSpaned("#EE7621", list.get(position).getLove()));
+            if (isSearch == true) {
+                showKeyword(holder.title, list.get(position).getTitle(), keyword);
+            } else {
+                holder.title.setText(list.get(position).getTitle());
+            }
+            holder.comment.setText("评论 ");
+            holder.comment.append(NewsUtils.textColorSpaned("#EE7621", list.get(position).getComment()));
+            holder.time.setText(NewsUtils.textColorSpaned("#000000", list.get(position).getTime()));
+            holder.source.setText(list.get(position).getSource());
+            String url = list.get(position).getUrlPicture();
+            if (url != null && url.length() > 10) {
+                holder.picture.setVisibility(View.VISIBLE);
+                holder.picture.setImageResource(R.drawable.new_logo2);
+            } else {
+                holder.picture.setVisibility(View.GONE);
+            }
+        }
+        /***********************************/
+        //如果是滚动状态则下面内容不加载
+       // if(scrollState) return convertView;
 
         holder.unlove.setTag(list.get(position));
         final RelativeLayout unlove = holder.unlove;
@@ -145,56 +191,14 @@ public void setSearch(boolean isSearch){
             }
         });
         //如果没有图片的URL，则把图片设置为不可见
-        if (list.get(position).getUrlPicture() != null && list.get(position).getUrlPicture().length() > 10) {
+        String url = list.get(position).getUrlPicture();
+        Log.i("position","position:"+position);
+       if (url != null && url.length() > 10) {
             holder.picture.setVisibility(View.VISIBLE);
-
-            ImageLoader.getInstance().displayImage(list.get(position).getUrlPicture(), holder.picture, options, new ImageLoadingListener() {
-                @Override
-                public void onLoadingStarted(String s, View view) {
-
-                }
-
-                @Override
-                public void onLoadingFailed(String s, View view, FailReason failReason) {
-
-                }
-
-                @Override
-                public void onLoadingComplete(String s, View view, Bitmap bitmap) {
-                    if(bitmap.getHeight()<96&&bitmap.getWidth()<96){
-                        view.setVisibility(View.GONE);
-                    }
-
-               }
-
-                @Override
-                public void onLoadingCancelled(String s, View view) {
-
-                }
-            });
+            ImageLoader.getInstance().displayImage(list.get(position).getUrlPicture(), holder.picture, options, new myImageLoadingListener());
         } else {
             holder.picture.setVisibility(View.GONE);
         }
-//      Log.i("1234",list.get(position).getUrlPicture());
-//        if(list.get(position).getAbstracted())
-        holder.abstrated.setText("    " + list.get(position).getAbstracted());
-        holder.read.setText("阅读 ");
-        holder.read.append(NewsUtils.textColorSpaned("#EE7621", list.get(position).getRead()));
-        holder.love.setText("喜欢 ");
-        holder.love.append(NewsUtils.textColorSpaned("#EE7621", list.get(position).getLove()));
-        Log.i("123","key="+keyword+isSearch);
-        if(isSearch==true){
-            showKeyword(holder.title,list.get(position).getTitle(),keyword);
-        }else{
-            holder.title.setText(list.get(position).getTitle());
-        }
-
-        holder.comment.setText("评论 ");
-        holder.comment.append(NewsUtils.textColorSpaned("#EE7621", list.get(position).getComment()));
-        holder.time.setText(NewsUtils.textColorSpaned("#000000", list.get(position).getTime()));
-//        holder.time.append(" 小时前");
-        holder.source.setText(list.get(position).getSource());
-
         return convertView;
     }
 
@@ -210,18 +214,40 @@ public void setSearch(boolean isSearch){
         ImageView xiala;
         RelativeLayout unlove;
     }
-    private void  showKeyword(TextView tv,String title,String keyword){
+
+    private void showKeyword(TextView tv, String title, String keyword) {
         if (title.contains(keyword)) {
 
             int index = title.indexOf(keyword);
             int len = keyword.length();
             tv.setText(title.substring(0, index));
 //            tv.append(NewsUtils.textColorSpaned("#FF0000",title.substring(index, index + len)));
-            tv.append(NewsUtils.textColorSpaned("#4087bf",title.substring(index, index + len)));
+            tv.append(NewsUtils.textColorSpaned("#4087bf", title.substring(index, index + len)));
             tv.append(title.substring(index + len, title.length()));
-
         } else {
             tv.setText(title);
+        }
+    }
+
+    class myImageLoadingListener implements ImageLoadingListener {
+        @Override
+        public void onLoadingStarted(String s, View view) {
+        }
+
+        @Override
+        public void onLoadingFailed(String s, View view, FailReason failReason) {
+        }
+
+        @Override
+        public void onLoadingComplete(String s, View view, Bitmap bitmap) {
+            if (bitmap.getHeight() < 96 && bitmap.getWidth() < 96) {
+                view.setVisibility(View.GONE);
+                Log.i("onLoadingComplete","onLoadingComplete:"+s);
+            }
+        }
+
+        @Override
+        public void onLoadingCancelled(String s, View view) {
         }
     }
 

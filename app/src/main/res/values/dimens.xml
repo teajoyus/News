@@ -7,7 +7,7 @@
     <dimen name="tab_textMargin">0dp</dimen>
     <dimen name="tab_textSize">12sp</dimen>
     <dimen name="tab_imageMargin">2dp</dimen>
-    <dimen name="tab_hightSize">45dp</dimen>
+    <dimen name="tab_hightSize">48dp</dimen>
 
 
     <dimen name="more_window_item_margin">12dp</dimen>

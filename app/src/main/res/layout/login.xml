@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:background="@color/themecolor">
 
     <ProgressBar
@@ -21,30 +20,30 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         >
-    <ImageView
-        android:id="@+id/iv_logo_login"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:src="@drawable/news_logo"
-        android:layout_marginTop="30dp"
+        <ImageView
+            android:id="@+id/iv_logo_login"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/news_logo"
+            android:layout_marginTop="30dp"
 
-        />
-    <TextView
-        android:id="@+id/title_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="互联网新闻推荐系统"
-        android:textColor="#ffffff"
-        android:textSize="22sp"
-        android:layout_marginBottom="10dp"
-        android:layout_alignBottom="@+id/iv_logo_login"
-        android:layout_toRightOf="@+id/iv_logo_login"
-        android:layout_toEndOf="@+id/iv_logo_login" />
+            />
+        <TextView
+            android:id="@+id/title_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="互联网新闻推荐系统"
+            android:textColor="#ffffff"
+            android:textSize="22sp"
+            android:layout_marginBottom="10dp"
+            android:layout_alignBottom="@+id/iv_logo_login"
+            android:layout_toRightOf="@+id/iv_logo_login"
+            android:layout_toEndOf="@+id/iv_logo_login" />
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/rl_login"
         android:layout_width="fill_parent"
-        android:layout_height="300dp"
+        android:layout_height="280dp"
         android:layout_below="@+id/rl_logo_login"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -56,7 +55,7 @@
         <EditText
             android:id="@+id/et_phone_login"
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:layout_marginTop="20dp"
             android:paddingLeft="15dp"
             android:background="@drawable/login_et_selector"
@@ -66,7 +65,7 @@
         <EditText
             android:id="@+id/et_pwd_login"
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:layout_below="@+id/et_phone_login"
             android:layout_marginTop="10dp"
             android:paddingLeft="15dp"
@@ -94,13 +93,13 @@
             android:layout_below="@+id/et_pwd_login"
             android:layout_marginTop="10dp"
             android:text="忘记密码？"
-            android:textColor="#a0ff0000"
+            android:textColor="#A0EE7621"
             android:textSize="18sp" />
 
         <Button
             android:id="@+id/bt_login"
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:layout_below="@+id/tv_forget_login"
             android:layout_marginTop="20dp"
             android:background="@drawable/login_btn_selector"
@@ -124,7 +123,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="马上注册"
-        android:textColor="#c0ffffff"
+        android:textColor="#f0ffffff"
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
         android:layout_below="@+id/rl_login"
@@ -140,14 +139,14 @@
         android:layout_alignTop="@+id/regist_tv_login"
         android:layout_toLeftOf="@+id/regist_tv_login"
         android:layout_toStartOf="@+id/regist_tv_login" />
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textSize="8sp"
-    android:text="Copyright [c] 2016-2016 By HuiZhou University Allrights Reserved. "
-    android:layout_alignParentBottom="true"
-    android:layout_centerHorizontal="true"
-    android:layout_marginBottom="20sp"
-    android:textColor="#ffffff"
-    />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="8sp"
+        android:text="Copyright [c] 2016-2016 By HuiZhou University Allrights Reserved. "
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20sp"
+        android:textColor="#ffffff"
+        />
 </RelativeLayout>

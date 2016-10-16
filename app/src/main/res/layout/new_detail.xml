@@ -72,8 +72,9 @@
         android:layout_marginTop="15sp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:textSize="18sp"
-        android:textColor="#d0000000"
+        android:textSize="17sp"
+        android:textColor="#c0000000"
+        android:lineSpacingExtra="4dp"
         />
         <LinearLayout
             android:id="@+id/ll_most_detail"

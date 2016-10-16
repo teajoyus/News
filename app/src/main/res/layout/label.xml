@@ -24,7 +24,7 @@
         android:layout_marginTop="10dp"
         android:gravity="left"
         android:text="所有标签"
-        android:textColor="#c0000000"
+        android:textColor="#a0000000"
         android:textSize="20sp"
         android:layout_below="@+id/tv_label" />
 

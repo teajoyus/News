@@ -46,15 +46,17 @@ public class LabelAdapter extends BaseAdapter {
         final TextView textView;
         if (convertView == null) {
             textView = new TextView(mContext);
-            textView.setLayoutParams(new GridView.LayoutParams(150, 90));
+            textView.setLayoutParams(new GridView.LayoutParams(150, 80));
             textView.setTextSize(16);
             if(list.get(position).isSelected()){
                 textView.setTextColor(0xA0EE7621);
+                textView.setBackgroundResource(R.drawable.label_select_shape);
             }else{
-                textView.setTextColor(0xA0000000);
+                textView.setTextColor(0x70000000);
+                textView.setBackgroundResource(R.drawable.label_unselect_shape);
             }
             textView.setGravity(Gravity.CENTER);
-            textView.setBackgroundResource(R.drawable.label_select_shape);
+
 
         } else {
             textView = (TextView) convertView;

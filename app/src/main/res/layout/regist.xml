@@ -39,7 +39,7 @@
         android:layout_below="@+id/rl_logo_regist"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:background="#ffffff">
 
         <LinearLayout
@@ -112,5 +112,16 @@
             android:textColor="#ffffff"
             android:textSize="22sp" />
     </RelativeLayout>
-
+    <TextView
+        android:id="@+id/login_tv_regist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="已有帐号,马上登录"
+        android:textColor="#f0ffffff"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_below="@+id/rl_regist"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        />
 </RelativeLayout>

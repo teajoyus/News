@@ -70,6 +70,13 @@ initView();
 
 
     private void initListener() {
+        getActivity().findViewById(R.id.iv_setting_right_user).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),SettingActivity.class);
+                startActivity(intent);
+            }
+        });
         rl_setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

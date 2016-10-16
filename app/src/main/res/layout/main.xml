@@ -48,20 +48,20 @@ android:singleLine="true"
         android:id="@+id/rl_column_main"
         android:layout_below="@+id/rl_title_main"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-
+        android:layout_height="35dp"
+        android:background="@color/themecolor"
         >
 
         <HorizontalScrollView
             android:id="@+id/hs__main"
             android:layout_width="match_parent"
-            android:layout_height="40.0dip"
+            android:layout_height="match_parent"
             android:scrollbars="none" >
 
             <LinearLayout
                 android:id="@+id/ll__main"
                 android:layout_width="fill_parent"
-                android:layout_height="40.0dip"
+                android:layout_height="match_parent"
                 android:layout_centerVertical="true"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"

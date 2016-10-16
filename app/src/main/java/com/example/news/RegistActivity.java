@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.entry.Label;
@@ -40,6 +41,7 @@ public class RegistActivity extends Activity implements RegistView {
     private EditText et_phone_regist, et_pwd_regist, et_pwd2_regist;
     private RegistPresenter presenter;
     private String phone;
+    private TextView login;
 private android.app.AlertDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,11 +64,19 @@ private android.app.AlertDialog dialog;
         et_phone_regist = (EditText) findViewById(R.id.et_phone_regist);
         et_pwd_regist = (EditText) findViewById(R.id.et_pwd_regist);
         et_pwd2_regist = (EditText) findViewById(R.id.et_pwd2_regist);
+        login = (TextView) findViewById(R.id.login_tv_regist);
+
         dialog = new SpotsDialog(RegistActivity.this,"正在注册...");
 
     }
 
     private void initListener() {
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RegistActivity.this.finish();
+            }
+        });
         bt_code_regist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

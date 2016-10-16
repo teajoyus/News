@@ -116,147 +116,193 @@ public class MainFragment extends Fragment implements NewView {
 
 
     private void initListener() {
+
         //编辑框的输入法搜索按钮的监听
-        search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEND || (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
+        search.setOnEditorActionListener(new TextView.OnEditorActionListener()
+
+                                         {
+                                             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                                                 if (actionId == EditorInfo.IME_ACTION_SEND || (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
 //do something;
-                    // Toast.makeText(getActivity(),"true",Toast.LENGTH_SHORT).show();
-                    return true;
-                }
-                // newsMessage.newSearch(v.getText().toString().trim());
-                dialog.setMessage("正在搜索新闻..");
-                dialog.show();
-                keyword = v.getText().toString().trim();
-                presenter.searchNew(keyword);
-                v.setText("");
-                hideKeyboard(getActivity(),search);
-                //Toast.makeText(getActivity(),"false",Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        });
+                                                     // Toast.makeText(getActivity(),"true",Toast.LENGTH_SHORT).show();
+                                                     return true;
+                                                 }
+                                                 // newsMessage.newSearch(v.getText().toString().trim());
+                                                 dialog.setMessage("正在搜索新闻..");
+                                                 dialog.show();
+                                                 keyword = v.getText().toString().trim();
+                                                 presenter.searchNew(keyword);
+                                                 v.setText("");
+                                                 hideKeyboard(getActivity(), search);
+                                                 //Toast.makeText(getActivity(),"false",Toast.LENGTH_SHORT).show();
+                                                 return false;
+                                             }
+                                         }
 
-
+        );
         scrollView.setOnItemClickListener(new NewsScrollView.OnItemClickListener() {
-            @Override
-            public void OnItemClickLister(int position, View v) {
-                String tag = (String) ((TextView) v).getTag();
+                                              @Override
+                                              public void OnItemClickLister(int position, View v) {
+                                                  String tag = (String) ((TextView) v).getTag();
 
-                RunTime.getRunTimeUser().setCurrentlabel(tag);
-                String userId = RunTime.isUserLogin() ? RunTime.getRunTimeUser().getId() : "";
-                if (RunTime.isRecommend()) {
-                    presenter.changeNew(userId, "");
-                    dialog.setMessage("正在为您推荐新闻..");
-                } else {
-                    presenter.changeNew(userId, tag);
-                    dialog.setMessage("正在获取新闻..");
-                }
-                dialog.show();
-
-            }
-        });
+                                                  RunTime.getRunTimeUser().setCurrentlabel(tag);
+                                                  String userId = RunTime.isUserLogin() ? RunTime.getRunTimeUser().getId() : "";
+                                                  if (RunTime.isRecommend()) {
+                                                      presenter.changeNew(userId, "");
+                                                      dialog.setMessage("正在为您推荐新闻..");
+                                                  } else {
+                                                      presenter.changeNew(userId, tag);
+                                                      dialog.setMessage("正在获取新闻..");
+                                                  }
+                                                  dialog.show();
+                                              }
+                                          }
+        );
         more.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), LabelActivity.class);
-                startActivityForResult(intent, 100);
-            }
-        });
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent intent = new Intent(getActivity(), LabelActivity.class);
+                                        startActivityForResult(intent, 100);
+                                    }
+                                }
+        );
 
 
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), NewDetailActivity.class);
-                intent.putExtra("newId", list.get(position - 1).getNewId());
-                startActivity(intent);
-            }
-        });
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener()
+
+                                  {
+                                      @Override
+                                      public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                          Intent intent = new Intent(getActivity(), NewDetailActivity.class);
+                                          intent.putExtra("newId", list.get(position - 1).getNewId());
+                                          startActivity(intent);
+                                      }
+                                  }
+
+        );
         lv.setPullLoadEnable(true);
-        lv.setXListViewListener(new XListView.IXListViewListener() {
-            @Override
-            public void onRefresh() {
+        lv.setXListViewListener(new XListView.IXListViewListener()
 
-                final String userId = RunTime.isUserLogin() ? RunTime.getRunTimeUser().getId() : "";
-                final String tag = RunTime.isRecommend() ? "" : RunTime.getRunTimeUser().getCurrentlabel();
-                if ("".equals(tag)) {
-                    dialog.setMessage("正在为您推荐新闻..");
-                } else {
-                    dialog.setMessage("正在获取新闻..");
-                }
-                dialog.show();
-                handler.postDelayed(new Runnable() {
+                                {
+                                    @Override
+                                    public void onRefresh() {
 
-                    @Override
-                    public void run() {
-                        // adapter.notifyDataSetChanged();
-                        presenter.flashNew(userId, tag);
-                        stopRefresh();
-                    }
-                }, 1000);
-            }
+                                        final String userId = RunTime.isUserLogin() ? RunTime.getRunTimeUser().getId() : "";
+                                        final String tag = RunTime.isRecommend() ? "" : RunTime.getRunTimeUser().getCurrentlabel();
+                                        if ("".equals(tag)) {
+                                            dialog.setMessage("正在为您推荐新闻..");
+                                        } else {
+                                            dialog.setMessage("正在获取新闻..");
+                                        }
+                                        dialog.show();
+                                        handler.postDelayed(new Runnable() {
 
-            @Override
-            public void onLoadMore() {
-                if(adapter.isSearch()){
-                    lv.getmFooterView().setVisibility(View.GONE);
-                    return;
-                }//如果是搜索关键字的上啦就不做任何请求，并且隐藏底部信息
-                else{
-                    lv.getmFooterView().setVisibility(View.VISIBLE);
-                }
-                dialog.setMessage("正在加载更多新闻..");
-                dialog.show();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        //adapter.notifyDataSetChanged();
-                        String userId = RunTime.isUserLogin() ? RunTime.getRunTimeUser().getId() : "";
-                        String tag = RunTime.isRecommend() ? "" : RunTime.getRunTimeUser().getCurrentlabel();
-                        presenter.mostNew(userId, tag);
-                        stopRefresh();
-                    }
-                }, 1200);
-            }
-        });
-        lv.setOnScrollListener(new XListView.OnXScrollListener() {
-            /**
-             * 当头部或者底部item触发的时候 会调用
-             * @param view
-             */
-            @Override
-            public void onXScrolling(View view) {
-                // Log.i("1234", "onXScrolling:");
-            }
+                                            @Override
+                                            public void run() {
+                                                // adapter.notifyDataSetChanged();
+                                                presenter.flashNew(userId, tag);
+                                                stopRefresh();
+                                            }
+                                        }, 1000);
+                                    }
 
-            /**
-             *
-             * @param view listview
-             * @param scrollState 1=正在滑动 0=松开
-             */
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-                // Log.i("1234", "onScrollStateChanged:" + scrollState);
-            }
+                                    @Override
+                                    public void onLoadMore() {
+                                        if (adapter.isSearch()) {
+                                            lv.getmFooterView().setVisibility(View.GONE);
+                                            return;
+                                        }//如果是搜索关键字的上啦就不做任何请求，并且隐藏底部信息
+                                        else {
+                                            lv.getmFooterView().setVisibility(View.VISIBLE);
+                                        }
+                                        dialog.setMessage("正在加载更多新闻..");
+                                        dialog.show();
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                //adapter.notifyDataSetChanged();
+                                                String userId = RunTime.isUserLogin() ? RunTime.getRunTimeUser().getId() : "";
+                                                String tag = RunTime.isRecommend() ? "" : RunTime.getRunTimeUser().getCurrentlabel();
+                                                presenter.mostNew(userId, tag);
+                                                stopRefresh();
+                                            }
+                                        }, 1200);
+                                    }
+                                }
 
-            /**
-             *
-             * @param view listview
-             * @param firstVisibleItem  屏幕上第一个item的position
-             * @param visibleItemCount  当前屏幕可视多少个item
-             * @param totalItemCount    item的总数量
-             */
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                // Log.i("1234", "onScroll:" + firstVisibleItem + "--" + visibleItemCount + "--" + totalItemCount);
-            }
-        });
+        );
+        lv.setOnScrollListener(new XListView.OnXScrollListener()
+
+                               {
+                                   /**
+                                    * 当头部或者底部item触发的时候 会调用
+                                    * @param view
+                                    */
+                                   @Override
+                                   public void onXScrolling(View view) {
+                                       // Log.i("1234", "onXScrolling:");
+                                   }
+
+                                   /**
+                                    *
+                                    * @param view listview
+                                    * @param scrollState 1=正在滑动 0=松开
+                                    */
+                                   @Override
+                                   public void onScrollStateChanged(AbsListView view, int scrollState) {
+                                       // Log.i("1234", "onScrollStateChanged:" + scrollState);
+                                       switch (scrollState) {
+                                           case AbsListView.OnScrollListener.SCROLL_STATE_IDLE://停止滚动
+                                           {
+                                               adapter.setScrollState(false);
+                                               int first = view.getFirstVisiblePosition();
+                                               int count = view.getChildCount();
+                                               Log.e("MainActivity", count + "");
+                                               //  adapter.onScrollStop(view,0,count);
+                                            // adapter.notifyDataSetChanged();
+                                            //   MainFragment.this.getActivity().findViewById(R.id.rl_column_main).setAlpha(1.0f);
+                                               break;
+                                           }
+                                           case AbsListView.OnScrollListener.SCROLL_STATE_FLING://滚动做出了抛的动作
+                                           {
+                                               //设置为正在滚动
+                                               adapter.setScrollState(true);
+                                          //     MainFragment.this.getActivity().findViewById(R.id.rl_column_main).setAlpha(0.0f);
+                                               break;
+                                           }
+
+                                           case AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL://正在滚动
+                                           {
+                                               //设置为正在滚动
+                                               adapter.setScrollState(true);
+                                            //   MainFragment.this.getActivity().findViewById(R.id.rl_column_main).setAlpha(0.0f);
+                                               break;
+                                           }
+                                       }
+                                   }
+
+                                   /**
+                                    *
+                                    * @param view listview
+                                    * @param firstVisibleItem  屏幕上第一个item的position
+                                    * @param visibleItemCount  当前屏幕可视多少个item
+                                    * @param totalItemCount    item的总数量
+                                    */
+                                   @Override
+                                   public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
+                                                        int totalItemCount) {
+                                        Log.i("1234", "onScroll:" + firstVisibleItem + "--" + visibleItemCount + "--" + totalItemCount);
+                                   }
+                               }
+
+        );
 
     }
 
     /**
      * 停止刷新，
      */
+
     private void stopRefresh() {
         lv.stopRefresh();
         lv.stopLoadMore();

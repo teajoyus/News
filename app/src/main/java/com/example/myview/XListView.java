@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.Scroller;
 import android.widget.TextView;
 
+import com.example.news.MainFragment;
 import com.example.news.R;
 
 public class XListView extends ListView implements OnScrollListener {
@@ -82,7 +83,15 @@ public class XListView extends ListView implements OnScrollListener {
 		super(context, attrs, defStyle);
 		initWithContext(context);
 	}
-
+	public void visibleFootAndHead(boolean visible){
+		if(visible){
+			mHeaderView.setVisibility(View.VISIBLE);
+			mFooterView.setVisibility(View.VISIBLE);
+		}else{
+			mHeaderView.setVisibility(View.INVISIBLE);
+			mFooterView.setVisibility(View.INVISIBLE);
+		}
+	}
 	private void initWithContext(Context context) {
 		mScroller = new Scroller(context, new DecelerateInterpolator());
 		// XListView need the scroll event, and it will dispatch the event to

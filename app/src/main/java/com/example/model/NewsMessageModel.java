@@ -245,7 +245,7 @@ public class NewsMessageModel implements INewsMessage {
                     Log.i("123","successed");
                     NewDetail detail = new NewDetail();
                     List<CommentItem>itemList = new ArrayList<>();
-                    CommentItem commentItem = null;
+
                     JSONObject o = object.getJSONObject("data");
                     detail.setContent(o.getString("content"));
                     String newid = o.getString("news_id");
@@ -253,7 +253,13 @@ public class NewsMessageModel implements INewsMessage {
                     detail.setLove(o.getInt("is_love")!=0);
                     detail.setNewUrl(o.getString("news_url"));
                     Log.i("1234","detail:"+detail.getNewUrl());
+
+                    */
+                    CommentItem commentItem = null;
+                    JSONObject o = object.getJSONObject("data");
                     JSONArray array = o.getJSONArray("comment_list");
+                    String newid = o.getString("news_id");
+                    List<CommentItem>itemList = new ArrayList<>();
                     if(array!=null&&array.length()>0) {
                         for (int i = 0; i < array.length(); i++) {
                             Log.i("123",array.toString());
@@ -286,7 +292,7 @@ public class NewsMessageModel implements INewsMessage {
                     }catch (Exception e ){
 
                     }
-*/
+
                    // detail.setCommentItems(itemList);
                     Log.i("123", detail.toString());
                     listener.onSuccess(detail);

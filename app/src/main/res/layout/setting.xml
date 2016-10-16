@@ -41,7 +41,7 @@
             android:gravity="center"
             android:text="允许他人浏览我的喜欢"
             android:textColor="#c0000000"
-            android:textSize="18sp" />
+            android:textSize="17sp" />
 
         <com.example.myview.UISwitchButton
             android:id="@+id/sb_unlook_setting"
@@ -75,7 +75,7 @@
             android:gravity="center"
             android:text="夜间模式"
             android:textColor="#c0000000"
-            android:textSize="18sp" />
+            android:textSize="17sp" />
 
         <com.example.myview.UISwitchButton
             android:id="@+id/sb_night_setting"
@@ -108,7 +108,7 @@
             android:gravity="center"
             android:text="大字体模式"
             android:textColor="#c0000000"
-            android:textSize="18sp" />
+            android:textSize="17sp" />
 
         <com.example.myview.UISwitchButton
             android:id="@+id/sb_word_setting"
@@ -141,7 +141,7 @@
             android:gravity="center"
             android:text="推送新闻"
             android:textColor="#c0000000"
-            android:textSize="18sp" />
+            android:textSize="17sp" />
 
         <com.example.myview.UISwitchButton
             android:id="@+id/sb_push_setting"
@@ -175,7 +175,7 @@
             android:gravity="center"
             android:text="清除缓存"
             android:textColor="#c0000000"
-            android:textSize="18sp" />
+            android:textSize="17sp" />
 
         <TextView
             android:id="@+id/tv_clean_setting"
@@ -211,7 +211,7 @@
             android:gravity="center"
             android:text="当前版本"
             android:textColor="#c0000000"
-            android:textSize="18sp" />
+            android:textSize="17sp" />
 
         <TextView
             android:id="@+id/tv_version_setting"
@@ -248,7 +248,7 @@
             android:gravity="center"
             android:text="接口更换"
             android:textColor="#c0000000"
-            android:textSize="18sp" />
+            android:textSize="17sp" />
 
         <ImageView
             android:layout_width="25dp"
@@ -272,7 +272,7 @@
         android:id="@+id/bt_logout_setting"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#80ff0000"
+        android:background="#A0EE7621"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="40dp"
         android:text="注销"

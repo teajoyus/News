@@ -3,11 +3,9 @@
     <item android:state_pressed="false">
         <shape>
             <!-- 填充 -->
+            <corners android:radius="2dp"></corners>
             <solid android:color="@color/themecolor" /> <!-- 定义填充的颜色值 -->
-
-
         </shape>
-
     </item>
 <!--
     <item android:state_focused="true"
@@ -16,7 +14,8 @@
     <item android:state_pressed="true" >
         <shape>
             <!-- 填充 -->
-            <solid android:color="#50ee5d1f" /> <!-- 定义填充的颜色值 -->
+            <corners android:radius="2dp"></corners>
+            <solid android:color="#a00096db" /> <!-- 定义填充的颜色值 -->
 
 
         </shape>

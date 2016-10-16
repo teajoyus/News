@@ -245,7 +245,7 @@ private void checkUpgrade(){
         tv_version_setting.setText("有更新");
         tv_version_setting.setTextColor(0xafff0000);
     }else {
-       // tv_version_setting.setText("最新版本");
+        tv_version_setting.setText("最新版本");
     }
 }
     private  void checkDiskCache(){
@@ -289,7 +289,7 @@ private void checkUpgrade(){
                        SettingActivity.this.runOnUiThread(new Runnable() {
                            @Override
                            public void run() {
-                                   tv_version_setting.setText(v);
+                                   tv_version_setting.append(v);
                            }
                        });
 

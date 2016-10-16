@@ -38,7 +38,7 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_below="@+id/tv_title_item"
-               android:layout_marginTop="10dp"
+               android:layout_marginTop="7dp"
                android:textSize="14sp"
                android:lines="2"
                android:textColor="#70000000"
@@ -48,10 +48,13 @@
 
     <ImageView
         android:id="@+id/iv_picture_item"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/shili"
-        android:scaleType="centerInside"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:src="@drawable/test"
+        android:scaleType="centerCrop"
+        android:background="@drawable/img_radius_shape"
+        android:paddingTop="5dp"
+        android:paddingLeft="5dp"
         />
     </LinearLayout>
     <TextView

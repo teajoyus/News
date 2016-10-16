@@ -87,8 +87,8 @@ public class NewsScrollView {
 			columnTextView.setTextColor(context.getResources().getColorStateList(color.top_category_scroll_text_color_day));
 			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(mItemWidth, LayoutParams.WRAP_CONTENT);
 		//=======================
-			params.leftMargin = 5;
-			params.rightMargin = 5;
+			params.leftMargin =2;
+			params.rightMargin = 2;
 			if (columnSelectIndex == i) {
 				columnTextView.setSelected(true);
 			}
@@ -112,7 +112,7 @@ public class NewsScrollView {
 
 				}
 			});
-			linearLayout.addView(columnTextView, i, params);
+			linearLayout.addView(columnTextView, i,params);
 		}
 
 	}
