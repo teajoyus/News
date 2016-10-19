@@ -2,6 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.news"
     >
+  <uses-sdk
+    android:minSdkVersion="14"
+    android:maxSdkVersion="23"
+  >
+
+
+  </uses-sdk>
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <!--BmobSDK所需的权限 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
