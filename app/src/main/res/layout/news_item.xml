@@ -50,7 +50,6 @@
         android:id="@+id/iv_picture_item"
         android:layout_width="90dp"
         android:layout_height="90dp"
-        android:src="@drawable/test"
         android:scaleType="centerCrop"
         android:background="@drawable/img_radius_shape"
         android:paddingTop="5dp"
