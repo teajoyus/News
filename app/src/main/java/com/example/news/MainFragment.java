@@ -36,6 +36,8 @@ import com.example.myview.NewsScrollView;
 import com.example.myview.XListView;
 import com.example.view.NewView;
 
+import org.xutils.common.util.LogUtil;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -50,19 +52,10 @@ public class MainFragment extends Fragment implements NewView {
     private ImageView more;
     private EditText search;
     private NewPresenter presenter;
-    /**
-     * tab名称
-     */
-    private List<Label> newsClassify;
+    private List<Label> newsClassify;//tab名称
     private NewsScrollView scrollView;
-    private INewsMessage newsMessage;
     private AlertDialog dialog;
     private String keyword;
-    /**
-     * 请求新闻的方式。 type=0表示刚进来，type=1表示下拉刷新，type=2表示查看更多
-     */
-    private int type;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main, container, false);
@@ -73,9 +66,9 @@ public class MainFragment extends Fragment implements NewView {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         presenter = new NewPresenter(this);
-        initView();
-        initColumnData();
-        initData();
+        initView();//初始化控件id
+        initColumnData();//初始化新闻标签
+        initData();//初始化数据请求
         initListener();
 
     }
@@ -333,6 +326,7 @@ public class MainFragment extends Fragment implements NewView {
                 //请求完成把滚动条隐藏
                 dialog.dismiss();
                 adapter = new NewsAdapter(getActivity(), list);
+              LogUtil.i(list.toString());
                 lv.setAdapter(adapter);
             }
         });
