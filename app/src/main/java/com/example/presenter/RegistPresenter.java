@@ -24,20 +24,23 @@ public class RegistPresenter implements OnRegistListener {
         this.rm = new RegistModelImpl();
     }
 
-    public void requestCode(String phone) {
-        rm.requestCode(rv.getContext(), phone, this);
+    public void requestCode() {
+      if(rv.getUser()==null)return;
+        rm.requestCode(rv.getContext(), rv.getUser().getPhone(), this);
 
     }
 
-    public void sendCode(String phone,String code) {
+    public void sendCode(String code) {
+      if(rv.getUser()==null)return;
         rv.updateViewAsCodeSend();
-        rm.sendCode(rv.getContext(), phone, code, this);
+        rm.sendCode(rv.getContext(), rv.getUser().getPhone(), code, this);
     }
     public void lebel(){
         rv.moveToLabel();
     }
-    public void regist(User user){
-        rm.regist(user,this);
+    public void regist(){
+      if(rv.getUser()==null)return;
+        rm.regist(rv.getUser(),this);
     }
     @Override
     public void onUserNameExist() {
