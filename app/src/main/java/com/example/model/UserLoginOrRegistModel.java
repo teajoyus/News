@@ -8,6 +8,7 @@ import com.example.https.HttpRequest;
 import com.example.iface.IUserLoginOrRegist;
 import com.example.iface.OnResultListener;
 import com.example.util.TokenWithTime;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,6 +16,7 @@ import org.json.JSONObject;
 /**用户登录注册的业务模型
  * Created by 林妙鸿 on 2016/6/5.
  */
+@Deprecated
 public class UserLoginOrRegistModel implements IUserLoginOrRegist {
     private OnResultListener listener;
     public void setListener(OnResultListener listener) {
@@ -60,6 +62,7 @@ public class UserLoginOrRegistModel implements IUserLoginOrRegist {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             Log.i("123", "result:" + s);
+
             try {
                 JSONObject object = new JSONObject(s);
                 if("failed".equals(object.get("message"))){
