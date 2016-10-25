@@ -82,11 +82,11 @@ private android.app.AlertDialog dialog;
             public void onClick(View v) {
                 if (bt_code_regist.getText().equals("获取验证码")) {
                     phone = et_phone_regist.getText().toString().trim();
-                    presenter.requestCode(phone);
+                    presenter.requestCode();
 
                 } else {
                     String smsId = et_phone_regist.getText().toString().trim();
-                    presenter.sendCode(phone, smsId);
+                    presenter.sendCode( smsId);
                 }
 
             }
@@ -128,7 +128,7 @@ private android.app.AlertDialog dialog;
             NewsSharedPreferences s = new NewsSharedPreferences(RegistActivity.this, "label");
             List<Label> list = s.getAll();
             RunTime.getRunTimeUser().setLabel(list);
-            presenter.regist(RunTime.getRunTimeUser());
+            presenter.regist();
         }
     }
     @Override
@@ -184,4 +184,9 @@ private android.app.AlertDialog dialog;
         share.save("phone", RunTime.getRunTimeUser().getPhone());
         share.save("pwd", RunTime.getRunTimeUser().getPassword());
     }
+
+  @Override
+  public User getUser() {
+    return RunTime.getRunTimeUser();
+  }
 }
