@@ -1,157 +1,166 @@
 package com.example.entry;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
-/**用户个人信息的实体
+/**
+ * 用户个人信息的实体
  * Created by 林妙鸿 on 2016/6/5.
  */
-public class User {
-    private  String phone;
-    private String password;
-    private String name;
-    private String id;
-    private String adresss;
-    private String email;
-    private String avstarUrl;
-    private List<Label>label;
-    private String currentlabel;
-    private static User user;
-    private int readAllNum;
-    private int loveAllNum;
-    private int commentAllNum;
-    //系统中维护一个用户的单例
-    public static User getAppUser(){
-        if(user==null)user = new User();
-        return user;
-    }
+public class User extends Message<User> {
+  private String phone;
+  private String password;
+  private String name;
+  @SerializedName("user_id")
+  private String id;
+  private String adresss;
+  private String email;
+  private String avstarUrl;
+  private List<Label> label;
+  private String currentlabel;
+  private static User user;
+  private int readAllNum;
+  private int loveAllNum;
+  private int commentAllNum;
 
-    public int getReadAllNum() {
-        return readAllNum;
-    }
+  public User() {
+  id="";//还没登陆是游客身份
+    currentlabel="";//默认是推荐新闻
 
-    public void setReadAllNum(int readAllNum) {
-        this.readAllNum = readAllNum;
-    }
+  }
 
-    public int getLoveAllNum() {
-        return loveAllNum;
-    }
+  public int getReadAllNum() {
+    return readAllNum;
+  }
 
-    public void setLoveAllNum(int loveAllNum) {
-        this.loveAllNum = loveAllNum;
-    }
+  public void setReadAllNum(int readAllNum) {
+    this.readAllNum = readAllNum;
+  }
 
-    public int getCommentAllNum() {
-        return commentAllNum;
-    }
+  public int getLoveAllNum() {
+    return loveAllNum;
+  }
 
-    public void setCommentAllNum(int commentAllNum) {
-        this.commentAllNum = commentAllNum;
-    }
+  public void setLoveAllNum(int loveAllNum) {
+    this.loveAllNum = loveAllNum;
+  }
 
-    public String getPhone() {
-        return phone;
-    }
+  public int getCommentAllNum() {
+    return commentAllNum;
+  }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+  public void setCommentAllNum(int commentAllNum) {
+    this.commentAllNum = commentAllNum;
+  }
 
-    public String getPassword() {
-        return password;
-    }
+  public String getPhone() {
+    return phone;
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+  public void setPhone(String phone) {
+    this.phone = phone;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getPassword() {
+    return password;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-    public String getId() {
-        return id;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public String getAdresss() {
-        return adresss;
-    }
+  public String getId() {
+    return id;
+  }
 
-    public void setAdresss(String adresss) {
-        this.adresss = adresss;
-    }
+  public void setId(String id) {
+    this.id = id;
+  }
 
-    public String getEmail() {
-        return email;
-    }
+  public String getAdresss() {
+    return adresss;
+  }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  public void setAdresss(String adresss) {
+    this.adresss = adresss;
+  }
 
-    public String getAvstarUrl() {
-        return avstarUrl;
-    }
+  public String getEmail() {
+    return email;
+  }
 
-    public void setAvstarUrl(String avstarUrl) {
-        this.avstarUrl = avstarUrl;
-    }
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
-    public static User getUser() {
-        return user;
-    }
+  public String getAvstarUrl() {
+    return avstarUrl;
+  }
 
-    public static void setUser(User user) {
-        User.user = user;
-    }
+  public void setAvstarUrl(String avstarUrl) {
+    this.avstarUrl = avstarUrl;
+  }
 
-    public String getCurrentlabel() {
-        return currentlabel;
-    }
+  public static User getUser() {
+    return user;
+  }
 
-    public void setCurrentlabel(String currentlabel) {
-        this.currentlabel = currentlabel;
-    }
+  public static void setUser(User user) {
+    User.user = user;
+  }
 
-    public String getLabel() {
-        if(label==null||label.size()==0){
-            return "";
-        }else{
-            StringBuffer buffer = new StringBuffer();
-            for(Label l:label){
-                String s = l.getName();
-                buffer.append(s);
-                buffer.append(",");
-            }
-            buffer.deleteCharAt(buffer.length()-1);
-            return buffer.toString();
-        }
-    }
+  public String getCurrentlabel() {
+    return currentlabel;
+  }
 
-    public void setLabel(List<Label> label) {
-        this.label = label;
-    }
+  public void setCurrentlabel(String currentlabel) {
+    this.currentlabel = currentlabel;
+  }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "phone='" + phone + '\'' +
-                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
-                ", id='" + id + '\'' +
-                ", adresss='" + adresss + '\'' +
-                ", email='" + email + '\'' +
-                ", avstarUrl='" + avstarUrl + '\'' +
-                ", label=" + label +
-                '}';
+  public String getLabel() {
+    if (label == null || label.size() == 0) {
+      return "";
+    } else {
+      StringBuffer buffer = new StringBuffer();
+      for (Label l : label) {
+        String s = l.getName();
+        buffer.append(s);
+        buffer.append(",");
+      }
+      buffer.deleteCharAt(buffer.length() - 1);
+      return buffer.toString();
     }
+  }
 
+  public void setLabel(List<Label> label) {
+    this.label = label;
+  }
+
+
+  @Override
+  public String toString() {
+    return "User{" +
+      "phone='" + phone + '\'' +
+      ", password='" + password + '\'' +
+      ", name='" + name + '\'' +
+      ", id='" + id + '\'' +
+      ", adresss='" + adresss + '\'' +
+      ", email='" + email + '\'' +
+      ", avstarUrl='" + avstarUrl + '\'' +
+      ", label=" + label +
+      ", currentlabel='" + currentlabel + '\'' +
+      ", readAllNum=" + readAllNum +
+      ", loveAllNum=" + loveAllNum +
+      ", commentAllNum=" + commentAllNum +
+      "}";
+  }
 }
