@@ -2,6 +2,8 @@ package com.example.view;
 
 import android.content.Context;
 
+import com.example.entry.User;
+
 /**
  * Created by Administrator on 2016/8/8.
  */
@@ -16,11 +18,12 @@ public interface RegistView {
     void moveToIndex();
     //跳到标签页
     void moveToLabel();
-
     //注册时弹出 Toast
     void showToast(String msg);
     Context getContext();
     //设置用户
     void setUser(String id);
+  //获取注册用户
+   User getUser();
 
 }
