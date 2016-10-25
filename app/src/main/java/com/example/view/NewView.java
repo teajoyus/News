@@ -1,6 +1,7 @@
 package com.example.view;
 
 import com.example.entry.NewItem;
+import com.example.entry.User;
 
 import java.util.List;
 
@@ -13,5 +14,5 @@ public interface NewView {
     void mostNewList(List<NewItem> list);
     void searchNewList(List<NewItem> list);
     void showToast(String msg);
-
+    User getUser();
 }
