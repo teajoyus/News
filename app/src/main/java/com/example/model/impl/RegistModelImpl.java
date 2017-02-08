@@ -51,7 +51,7 @@ public class RegistModelImpl implements RegistModel {
       e.printStackTrace();
     }
     try {
-      list.add(new ParamsPair("tags", URLEncoder.encode(user.getLabel(), "utf-8")));
+      list.add(new ParamsPair("tags", URLEncoder.encode(user.getLabelString(), "utf-8")));
     } catch (UnsupportedEncodingException e) {
       e.printStackTrace();
     }

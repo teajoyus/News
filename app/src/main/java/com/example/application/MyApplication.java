@@ -15,6 +15,7 @@ import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
 
 import org.xutils.common.util.LogUtil;
+import org.xutils.x;
 
 import cn.bmob.push.BmobPush;
 import cn.bmob.sms.*;
@@ -58,9 +59,13 @@ public class MyApplication extends Application {
     // 使用推送服务时的初始化操作
     //   BmobInstallation.getCurrentInstallation(this).save();
     //初始化Bugly
-    Bugly.init(getApplicationContext(), "900034562", false);
-    Beta.defaultBannerId = R.drawable.news_logo;
-    Beta.largeIconId = R.drawable.news_logo;
+   //Bugly.init(getApplicationContext(), "900034562", false);
+  //  Beta.defaultBannerId = R.drawable.news_logo;
+ //   Beta.largeIconId = R.drawable.news_logo;
+
+//初始化xUtils的日志输出，必须把调试模式设置true才会打印
+    x.Ext.init(this);
+    x.Ext.setDebug(true);
     super.onCreate();
   }
 }

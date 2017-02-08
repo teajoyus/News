@@ -4,17 +4,23 @@ import android.util.Log;
 
 import com.example.api.NewsAPI;
 import com.example.constant.Constant;
+import com.example.entry.Enum;
+import com.example.entry.Message;
 import com.example.entry.NewItem;
 import com.example.entry.ParamsPair;
 import com.example.iface.OnNewListener;
 import com.example.model.iface.NewsModel;
+import com.example.runtime.RunTime;
 import com.example.util.OKHttpUtil;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.xutils.common.util.LogUtil;
 
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -25,25 +31,22 @@ import java.util.List;
  * Created by Administrator on 2016/8/9.
  */
 public class NewModelImpl implements NewsModel {
-    static final int INIT_TYPE = 0;
-    static final int FLASH_TYPE = 1;
-    static final int MOST_TYPE = 2;
-    static final int SEARCH_TYPE = 3;
+
 
 
     @Override
     public void requestNew(String userId, int alrReq, int count, String tag, OnNewListener listener) {
-        request(userId,alrReq,count,tag,listener,INIT_TYPE);
+        request(userId,alrReq,count,tag,listener, Enum.NewsStatus.INIT);
     }
 
     @Override
     public void requestMostNew(String userId, int alrReq, int count, String tag, OnNewListener listener) {
-        request(userId,alrReq,count,tag,listener,MOST_TYPE);
+        request(userId,alrReq,count,tag,listener,Enum.NewsStatus.MOST);
     }
 
     @Override
     public void requestFalshNew(String userId, int alrReq, int count, String tag, OnNewListener listener) {
-        request(userId,alrReq,count,tag,listener,FLASH_TYPE);
+        request(userId,alrReq,count,tag,listener,Enum.NewsStatus.FLASH);
     }
 
 
@@ -86,24 +89,50 @@ public class NewModelImpl implements NewsModel {
             }
         });
     }
-    private void request(String userId, int alrReq, int count, String tag, final OnNewListener listener, final int type) {
+
+
+
+
+    private void request(String userId, int alrReq, int count, String tag, final OnNewListener listener, final Enum.NewsStatus type) {
         final List<ParamsPair> list = new ArrayList<>();
         list.add(new ParamsPair("count", count + ""));
         list.add(new ParamsPair("alrequest", alrReq + ""));
-        list.add(new ParamsPair("userid", userId));
+        list.add(new ParamsPair("userid",userId));
         list.add(new ParamsPair("tag", tag));
         String url = OKHttpUtil.makeURL(NewsAPI.getNewsListAPI(), list);
         Log.i("url", url);
-        OKHttpUtil.enqueue(url, new Callback() {
+        Log.i("userid:", userId);
+        Log.i("userid:", RunTime.getRunTimeUser().getId());
+      OKHttpUtil.enqueue(url, new Callback() {
             @Override
             public void onFailure(Request request, IOException e) {
                 listener.onFaild();
             }
-
             @Override
             public void onResponse(Response response) throws IOException {
                 String s = response.body().string();
-                Log.i("body", s);
+              if(s==null){
+                listener.onFaild();
+                return;
+              }
+              System.out.println(s);
+              Gson gson = new Gson();
+              Message<List<NewItem>> msg = gson.fromJson(s,new TypeToken<Message<List<NewItem>>>(){}.getType());
+              List<NewItem> list = msg.getData();
+            if(!msg.isSuccess()){
+              System.out.println(msg.getFlag());
+              listener.onFaild();
+            }else{
+              if (type == Enum.NewsStatus.INIT) {
+                listener.onSuccessWithNew(list);
+              } else if (type == Enum.NewsStatus.FLASH) {
+                listener.onSuccessWithFlash(list);
+              } else if (type == Enum.NewsStatus.MOST) {
+                listener.onSuccessWithMost(list);
+              }
+            }
+
+              /*
                 try {
                     JSONObject object = new JSONObject(s);
                     if ("failed".equals(object.getString("message"))) {
@@ -130,10 +159,11 @@ public class NewModelImpl implements NewsModel {
                     System.out.println(e.toString());
                 }
                 listener.onFaild();
-
+*/
             }
         });
     }
+  @Deprecated
     private List<NewItem> parseJSONArray(JSONArray array) {
         NewItem item = null;
         JSONObject o = null;

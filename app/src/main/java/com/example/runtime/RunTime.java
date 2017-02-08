@@ -22,7 +22,7 @@ public class RunTime {
     }
 
     public static boolean isUserLogin() {
-        return getRunTimeUser().getId() != null;
+        return getRunTimeUser().getId() != null&&!"".equals(getRunTimeUser().getId());
     }
 
     public static void loggout() {

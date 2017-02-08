@@ -89,16 +89,38 @@ public class MainFragment extends Fragment implements NewView {
   }
 
   private void initColumnData() {
-    //取缓存里的标签
-    NewsSharedPreferences s = new NewsSharedPreferences(getActivity(), "label");
-    newsClassify = s.getAll();
-    Label label = new Label();
-    label.setKey("");
-    label.setName("推荐");
-    newsClassify.add(0, label);
+    NewsSharedPreferences nsp = new NewsSharedPreferences(getActivity(), "label");
+    if(newsClassify==null&&RunTime.isUserLogin()){
+      newsClassify = RunTime.getRunTimeUser().getLabel();
+      if(newsClassify!=null) {
+        nsp.removeAll();
+        for (Label s : newsClassify) {
+          nsp.save(s.getKey(), s.getName());
+        }
+      }
+    }
+    if(newsClassify==null){
+      // 如果没登陆或者是已经登陆了然后再标签页选择新的标签，则取缓存里的标签
+      newsClassify = nsp.getAll();
+      Label label = new Label();
+      label.setKey("");
+      label.setName("推荐");
+      newsClassify.add(0, label);
+    }
     RunTime.getRunTimeUser().setLabel(newsClassify);
   }
 
+  /**
+   * 初始化缓存里的分类
+   */
+    private  void initChcheNewsClassify(){
+      NewsSharedPreferences nsp = new NewsSharedPreferences(getActivity(), "label");
+      newsClassify = nsp.getAll();
+      Label label = new Label();
+      label.setKey("");
+      label.setName("推荐");
+      newsClassify.add(0, label);
+}
 
   private void initListener() {
     //编辑框的输入法搜索按钮的监听
@@ -283,6 +305,7 @@ public class MainFragment extends Fragment implements NewView {
     String str = formatter.format(curDate);
     lv.setRefreshTime(str);
   }
+
 
   @Override
   public void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -11,35 +11,27 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.adapter.NewsAdapter;
+import com.example.entry.Enum;
 import com.example.entry.NewItem;
-import com.example.iface.INewsMessage;
-import com.example.iface.OnResultListener;
-import com.example.model.NewsMessageModel;
 import com.example.myview.MoreWindow;
 import com.example.myview.XListView;
 import com.example.myview.dialog.SpotsDialog;
-
+import com.example.presenter.HotNewsPresenter;
+import com.example.view.HotNewsView;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class HotFragment extends Fragment implements OnResultListener{
-
+public class HotFragment extends Fragment implements HotNewsView{
+  private HotNewsPresenter presenter;
     private ImageView iv_sort_hot;
     private XListView lv_hot;
     private MoreWindow mMoreWindow;
     private NewsAdapter adapter;
-    private List<NewItem> list;
     private Handler handler;
-    private INewsMessage newsMessage;
-    private int sortType;//排序方式,1为喜欢,2为阅读,3为评论
-    private int count,alrRequest;//请求数量，已经请求数量
     private TextView title_tv;
     private AlertDialog dialog;
     @Override
@@ -53,7 +45,6 @@ public class HotFragment extends Fragment implements OnResultListener{
         super.onActivityCreated(savedInstanceState);
         initView();
         initData();
-        initHandler();
         initListener();
 
     }
@@ -69,38 +60,20 @@ public class HotFragment extends Fragment implements OnResultListener{
 
     }
     private void initData() {
-        newsMessage = new NewsMessageModel();
+      presenter = new HotNewsPresenter(this);
         mMoreWindow.init();//初始化弹窗菜单
-        sortType = 2; //默认类型是2，表示按照阅读量的排序方式
-        count=10;
-        alrRequest=0;
-        list = new ArrayList<NewItem>();
-//        NewItem item = new NewItem();
-//        item.setTitle("野象被偷猎者打伤 竟一拐一瘸去酒店求助");
-//        item.setRead("3");
-//        item.setComment("23");
-//        item.setLove("2");
-//        item.setUserTime("6月25日");
-//        item.setLabel("娱乐");
-//        for(int i=0;i<10;i++){
-//            list.add(item);
-//        }
-//        adapter = new NewsAdapter(getActivity(),list);
         handler = new Handler();
+      presenter.requestHotNews();
     }
 
-    private void initHandler() {
-        lv_hot.setAdapter(adapter);
-        newsMessage.setListener(this);
-        newsMessage.newSort(sortType,count,alrRequest);
-    }
+
 
     private void initListener() {
         lv_hot.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), NewDetailActivity.class);
-                intent.putExtra("newId",list.get(position-1).getNewId());
+                intent.putExtra("newId",presenter.getList().get(position-1).getNewId());
                 startActivity(intent);
             }
         });
@@ -139,19 +112,13 @@ public class HotFragment extends Fragment implements OnResultListener{
             public void onRefresh() {
                 dialog.show();
                 handler.postDelayed(new Runnable() {
-
                     @Override
                     public void run() {
-
-                        //下拉刷新就是做新的请求，放弃掉原先的数据
-                        count = 10;
-                        alrRequest = 0;
-                        newsMessage.newSort(sortType, count, alrRequest);
+                      //下拉刷新
+                       presenter.requestHotNews();
                         stopRefresh();
                     }
                 }, 1000);
-
-
             }
             @Override
             public void onLoadMore() {
@@ -160,102 +127,131 @@ public class HotFragment extends Fragment implements OnResultListener{
 
                     @Override
                     public void run() {
-
-                        //下拉刷新就是做新的请求，放弃掉原先的数据
-                        count = 5;
-                        newsMessage.newSort(sortType, count, alrRequest);
+                    //加载更多新闻
+                        presenter.requestMostNews();
                     }
                 }, 1000);
 
 
             }
         });
-        /*********************************************************************/
         /**
          * 自定义一个按钮的监听回调事件
          */
         mMoreWindow.setOnItemClickListener(new MoreWindow.OnItemClickListener() {
             @Override
             public void onClick(View v) {
-                int type = 2;
+              /**
+               * 类型不同就重新刷新列表数据
+               */
             switch (v.getId()){
-                case R.id.iv_comment_sort:type=3;title_tv.setText("热点评论");break;
-                case R.id.iv_read_sort:type=2;title_tv.setText("热点阅读");break;
-                case R.id.iv_love_sort_:type=1;title_tv.setText("热点喜欢");break;
-            }
-                /**
-                 * 类型不同就必须重新刷新列表数据 之前的数据不要
-                 */
-                if(type!=sortType){
-                    sortType =type;
-                    count=10;
-                    alrRequest =0;
-                    newsMessage.newSort(sortType,count,alrRequest);
+                case R.id.iv_comment_sort:{
+                  title_tv.setText("热点评论");
+                  presenter.setType(Enum.SortType.COMMENT);
+                  break;
                 }
-
-
+                case R.id.iv_read_sort:{
+                  title_tv.setText("热点阅读");
+                  presenter.setType(Enum.SortType.READ);
+                  break;
+                }
+                case R.id.iv_love_sort_:{
+                  title_tv.setText("热点喜欢");
+                  presenter.setType(Enum.SortType.LOVE);
+                  break;
+                }
+            }
+              presenter.requestHotNews();
             }
         });
 
 
     }
+  @Override
+  public void sortNewsView(final List<NewItem> list) {
+    getActivity().runOnUiThread(new Runnable() {
+      @Override
+      public void run() {
+        adapter = new NewsAdapter(getActivity(),list);
+        lv_hot.setAdapter(adapter);
+      }
+    });
 
+  }
+  @Override
+  public void moreNewsView(List<NewItem> list) {
+    getActivity().runOnUiThread(new Runnable() {
+      @Override
+      public void run() {
+        adapter.notifyDataSetChanged();
+      }
+    });
 
-    /** 停止刷新， */
-    private void stopRefresh() {
-        lv_hot.stopRefresh();
-        lv_hot.stopLoadMore();
-        SimpleDateFormat formatter   =   new   SimpleDateFormat   ("MM月dd日   HH:mm:ss ");
-        Date curDate   =   new   Date(System.currentTimeMillis());//获取当前时间
-        String   str   =   formatter.format(curDate);
-        lv_hot.setRefreshTime(str);
-    }
-
-    /**
-     * 获取新闻列表的结果监听事件
-     */
-    @Override
-    public void onStartDoing() {
+  }
+  @Override
+  public void showDialog() {
+    getActivity().runOnUiThread(new Runnable() {
+      @Override
+      public void run() {
         stopRefresh();
         dialog.show();
         lv_hot.getmFooterView().setmHintView("加载更多..");
+      }
+    });
 
-
-    }
-
-    @Override
-    public void onSuccess(Object o) {
-        stopRefresh();
-       dialog.dismiss();
-        if(o==null||((List<NewItem>) o).size()==0){
-            Toast.makeText(getActivity(),"没有更多新闻了",Toast.LENGTH_SHORT).show();
-            lv_hot.getmFooterView().setmHintView("--------------已经到底了--------------");
-            return;
-        }
-        /*
-        已请求数量=0说明列表还没有过该类型数据
-         */
-        if(alrRequest==0){
-            list =(List<NewItem>) o;
-            adapter = new NewsAdapter(getActivity(),list);
-            lv_hot.setAdapter(adapter);
-            //如果不为0说明是加载更多
-        }else{
-            List<NewItem>items =(List<NewItem>) o;
-            for(NewItem item:items){
-                list.add(item);
-            }
-            alrRequest+=count;//更新已经请求数量
-            adapter.notifyDataSetChanged();
-        }
-        alrRequest+=((List<NewItem>) o).size();
-
-    }
-
-    @Override
-    public void onFaild(Object o) {
+  }
+  @Override
+  public void dismssDialog() {
+    getActivity().runOnUiThread(new Runnable() {
+      @Override
+      public void run() {
         dialog.dismiss();
-        Toast.makeText(getActivity(),"没有更多新闻了",Toast.LENGTH_SHORT).show();
-        lv_hot.getmFooterView().setmHintView("已经到底了");
-    }
+        stopRefresh();
+      }
+    });
+
+  }
+
+  @Override
+  public void showToast(final String msg) {
+    getActivity().runOnUiThread(new Runnable() {
+      @Override
+      public void run() {
+        Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
+      }
+    });
+
+  }
+
+  @Override
+  public void noNewsView() {
+
+  }
+
+  @Override
+  public void noMostView() {
+    getActivity().runOnUiThread(new Runnable() {
+      @Override
+      public void run() {
+        getActivity().runOnUiThread(new Runnable() {
+          @Override
+          public void run() {
+            adapter.notifyDataSetChanged();
+          }
+        });
+      }
+    });
+
+  }
+
+  /** 停止刷新， */
+  private void stopRefresh() {
+    lv_hot.stopRefresh();
+    lv_hot.stopLoadMore();
+    SimpleDateFormat formatter   =   new   SimpleDateFormat   ("MM月dd日   HH:mm:ss ");
+    Date curDate   =   new   Date(System.currentTimeMillis());//获取当前时间
+    String   str   =   formatter.format(curDate);
+    lv_hot.setRefreshTime(str);
+  }
+
 }

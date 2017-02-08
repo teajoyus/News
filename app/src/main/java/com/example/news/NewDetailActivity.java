@@ -449,7 +449,6 @@ public class NewDetailActivity extends Activity implements OnResultListener {
         } else {
             collect.setBackgroundResource(R.drawable.love_unselected);
 
-
         }
         int num = commentItemList.size();
         tv_comment_num_detail.setText(num + "");
@@ -480,6 +479,7 @@ public class NewDetailActivity extends Activity implements OnResultListener {
         lv_comment.setAdapter(commentAdapter);
         setListViewHeightBasedOnChildren(lv_comment);
         requestHtmlImage(newDetail.getContent());
+      
     }
 
     @Override

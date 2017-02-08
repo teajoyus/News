@@ -1,5 +1,7 @@
 package com.example.iface;
 
+import android.view.View;
+
 import com.example.entry.NewItem;
 
 import java.util.List;
@@ -13,6 +15,7 @@ public interface OnNewListener {
      * @param list
      */
     void onSuccessWithNew(List<NewItem>list);
+
     /**
      *     下拉刷新新闻
      */

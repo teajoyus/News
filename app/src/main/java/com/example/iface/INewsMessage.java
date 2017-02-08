@@ -3,6 +3,7 @@ package com.example.iface;
 /**用于处理新闻来源的业务接口
  * Created by 林妙鸿 on 2016/6/5.
  */
+@Deprecated
 public interface INewsMessage {
     /**
      *

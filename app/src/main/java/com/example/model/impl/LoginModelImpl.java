@@ -2,21 +2,21 @@ package com.example.model.impl;
 
 import com.example.api.NewsAPI;
 import com.example.constant.Constant;
+import com.example.entry.Message;
 import com.example.entry.ParamsPair;
+import com.example.entry.User;
 import com.example.iface.OnLoginListener;
 import com.example.model.iface.LoginModel;
 import com.example.util.OKHttpUtil;
 import com.example.util.TokenWithTime;
-import com.squareup.okhttp.Call;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.squareup.okhttp.Callback;
-import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
+import android.os.Handler;
 import android.util.Log;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ import java.util.List;
 
 
 /**
- * Created by Administrator on 2016/8/8.
+ * Created by linmh on 2016/8/8.
  */
 public class LoginModelImpl implements LoginModel {
     public void login(String name, String password, final OnLoginListener listener) {
@@ -42,25 +42,27 @@ public class LoginModelImpl implements LoginModel {
             @Override
             public void onResponse(Response response) throws IOException {
                 String s = response.body().string();
-                Log.i("body", s);
-                try {
-                    JSONObject object = new JSONObject(s);
-                    JSONObject data = object.getJSONObject("data");
-                    if ("failed".equals(object.get("message"))) {
-                        int code = data.getInt("flag");
-                        if (code == -1) {
-                            listener.onUserPasswordError();
-                        } else if (code == -2) {
-                            listener.onUserNameError();
-                        } else {
-                            listener.onFailure();
-                        }
-                    } else {
-                        listener.onSuccess(data.getString("user_id"));
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+              System.out.println(s);
+              Gson gson = new Gson();
+              Message<User> msg = gson.fromJson(s, new TypeToken<Message<User>>(){}.getType());
+
+              if(msg==null){
+                listener.onFailure();
+                return;
+              }
+             User user = msg.getData();
+             System.out.println(msg);
+            if(msg.isSuccess()){
+              listener.onSuccess(user.getId());
+            }else{
+              int code = user.getFlag();
+              System.out.println(code);
+              switch (code){
+                case -1:listener.onUserPasswordError();break;
+                case -2:  listener.onUserNameError();break;
+                default:listener.onFailure();break;
+              }
+            }
             }
         });
 

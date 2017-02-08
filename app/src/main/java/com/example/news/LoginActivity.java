@@ -87,13 +87,7 @@ public class LoginActivity extends Activity implements LoginView{
             @Override
             public void onClick(View v) {
                 dialog.show();
-
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        presenter.login();
-                    }
-                }, 1200);
+               presenter.login();
             }
         });
         casual.setOnClickListener(new View.OnClickListener() {
@@ -103,11 +97,10 @@ public class LoginActivity extends Activity implements LoginView{
             }
         });
     }
-
+  //进入主页
     @Override
     public void moveToIndex() {
         dialog.dismiss();
-        //进入主页
         Intent intent = new Intent(LoginActivity.this, IndexActivity.class);
         startActivity(intent);
         this.finish();
@@ -121,7 +114,6 @@ public class LoginActivity extends Activity implements LoginView{
 
     @Override
     public void moveToNoUser() {
-        RunTime.getRunTimeUser().setId(null);//随便看看的时候要确保id是null
         Intent intent = new Intent(LoginActivity.this, IndexActivity.class);
         startActivity(intent);
         this.finish();

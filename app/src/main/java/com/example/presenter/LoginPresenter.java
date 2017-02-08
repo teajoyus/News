@@ -7,7 +7,7 @@ import com.example.model.impl.LoginModelImpl;
 import com.example.view.LoginView;
 
 /**
- * Created by Administrator on 2016/8/8.
+ * Created by linmh on 2016/8/8.
  */
 public class LoginPresenter implements OnLoginListener {
     LoginView lv;
@@ -28,32 +28,34 @@ public class LoginPresenter implements OnLoginListener {
         lm.login(name, psw, this);
     }
 
-    public void regist(){
-        lv.moveToRegist();
-    }
-    public void nouser(){
-        lv.moveToNoUser();
-    }
-    @Override
-    public void onUserNameError() {
-        lv.showTaost("用户名不存在");
-    }
+  public void regist() {
+    lv.moveToRegist();
+  }
 
-    @Override
-    public void onUserPasswordError() {
-        lv.showTaost("密码错误");
-    }
+  public void nouser() {
+    lv.moveToNoUser();
+  }
 
-    @Override
-    public void onSuccess(String id) {
-        lv.setUser(id);
-        lv.showTaost("登录成功");
-        lv.moveToIndex();
-    }
+  @Override
+  public void onUserNameError() {
+    lv.showTaost("用户名不存在");
+  }
 
-    @Override
-    public void onFailure() {
+  @Override
+  public void onUserPasswordError() {
+    lv.showTaost("密码错误");
+  }
+
+  @Override
+  public void onSuccess(String id) {
+    lv.setUser(id);
+    lv.showTaost("登录成功");
+    lv.moveToIndex();
+  }
+
+  @Override
+  public void onFailure() {
     lv.showTaost("请求失败");
-    }
+  }
 
 }

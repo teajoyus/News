@@ -84,5 +84,7 @@ public class OKHttpUtil {
         }
         return url+"?"+buffer.toString()+TokenWithTime.formatGETToken();
     }
-
+  public static String makeURL(String url,String params){
+    return url+"?"+params+TokenWithTime.formatGETToken();
+  }
 }

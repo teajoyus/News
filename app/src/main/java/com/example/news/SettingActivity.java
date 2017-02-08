@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -261,6 +262,9 @@ private void checkUpgrade(){
         }
     }
     private void initLogoutButton(){
+      Log.i("linmh>>>","uesr:"+RunTime.getRunTimeUser());
+      Log.i("linmh>>>","id:"+RunTime.getRunTimeUser().getId());
+      Log.i("linmh>>>","isLogin:"+RunTime.isUserLogin());
         if(RunTime.isUserLogin()){
             logout.setText("注销");
             logout.setBackgroundColor(0x80ff0000);

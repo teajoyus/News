@@ -24,6 +24,7 @@ import java.util.Map;
 /**用户登录注册的业务模型
  * Created by 林妙鸿 on 2016/6/5.
  */
+@Deprecated
 public class UserModel implements IUserModel {
     private OnResultListener listener;
     public void setListener(OnResultListener listener) {
@@ -43,7 +44,7 @@ public class UserModel implements IUserModel {
         RegsistAsyncTask task = new RegsistAsyncTask();
 
         try {
-            task.execute(user.getPassword(),user.getPhone(),URLEncoder.encode(user.getName(),"utf-8"), URLEncoder.encode(user.getLabel(),"utf-8"));
+            task.execute(user.getPassword(),user.getPhone(),URLEncoder.encode(user.getName(),"utf-8"), URLEncoder.encode(user.getLabelString(),"utf-8"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

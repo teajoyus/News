@@ -126,7 +126,7 @@ public class User extends Message<User> {
     this.currentlabel = currentlabel;
   }
 
-  public String getLabel() {
+  public String getLabelString() {
     if (label == null || label.size() == 0) {
       return "";
     } else {
@@ -139,6 +139,11 @@ public class User extends Message<User> {
       buffer.deleteCharAt(buffer.length() - 1);
       return buffer.toString();
     }
+  }
+
+
+  public List<Label> getLabel() {
+    return label;
   }
 
   public void setLabel(List<Label> label) {

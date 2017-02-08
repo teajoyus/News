@@ -7,18 +7,23 @@ import java.util.List;
 /**
  * Created by 林妙鸿 on 2016/5/26 0026.
  */
-public class NewItem {
-   // @SerializedName("news_title")
+public class NewItem extends Message<NewItem>{
+    @SerializedName("title")
     private String title;
+  @SerializedName("comment_times")
     private String comment;
     private String time;
+@SerializedName("read_times")
     private String read;
-    private String urlNew;
+  @SerializedName("news_id")
     private String newId;
+  @SerializedName("abstract")
     private String abstracted;
+  @SerializedName("image")
     private String urlPicture;
     private String label;
     private  String source;
+  @SerializedName("love_times")
     private  String love;
     private String userTime;
     public NewItem(){}
@@ -79,14 +84,6 @@ public class NewItem {
         this.read = read;
     }
 
-    public String getUrlNew() {
-        return urlNew;
-    }
-
-    public void setUrlNew(String urlNew) {
-        this.urlNew = urlNew;
-    }
-
     public String getUrlPicture() {
         return urlPicture;
     }
@@ -126,7 +123,6 @@ public class NewItem {
                 ", comment='" + comment + '\'' +
                 ", time='" + time + '\'' +
                 ", read='" + read + '\'' +
-                ", urlNew='" + urlNew + '\'' +
                 ", urlPicture=" + urlPicture +
                 ", source='" + source + '\'' +
                 ", love='" + love + '\'' +

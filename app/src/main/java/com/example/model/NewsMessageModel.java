@@ -27,6 +27,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/6/5.
  */
+@Deprecated
 public class NewsMessageModel implements INewsMessage {
     private OnResultListener listener;
 
